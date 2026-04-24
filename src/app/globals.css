@@ -1,0 +1,282 @@
+:root {
+  --primary: #008080;
+  --secondary: #333;
+  --background: #ffffff;
+  --foreground: #1a1a1a;
+  --white: #ffffff;
+  --error: #c00;
+  --border: #333;
+}
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: var(--background);
+  color: var(--foreground);
+  line-height: 1.5;
+}
+
+.container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 3rem 1.5rem;
+}
+
+header {
+  border-bottom: 2px solid var(--border);
+  padding: 2rem 0;
+  text-align: left;
+  margin-bottom: 3rem;
+}
+
+h1 {
+  font-size: 1.5rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+.main-content {
+  display: flex;
+  flex-direction: column;
+  gap: 4rem;
+}
+
+.card {
+  background: var(--white);
+  border: 1px solid var(--border);
+  padding: 2rem;
+}
+
+.input-section h2,
+.results-section h2 {
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  margin-bottom: 1.5rem;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 0.5rem;
+}
+
+.input-hint {
+  font-size: 0.85rem;
+  color: #666;
+  margin-bottom: 1rem;
+}
+
+.details-card {
+  margin-top: 2rem;
+}
+
+.details-content {
+  margin-top: 1rem;
+}
+
+.details-content p {
+  margin-bottom: 0.5rem;
+}
+
+.tag-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+}
+
+.tag-neutral {
+  background-color: #eee;
+}
+
+textarea {
+  width: 100%;
+  min-height: 150px;
+  padding: 1rem;
+  border: 1px solid var(--border);
+  font-family: Arial, sans-serif;
+  font-size: 0.9rem;
+  margin-bottom: 1.5rem;
+}
+
+textarea:focus {
+  outline: none;
+  background-color: var(--primary-light);
+}
+
+.btn {
+  width: auto;
+  padding: 0.8rem 2rem;
+  background-color: var(--primary);
+  color: var(--white);
+  border: 1px solid var(--border);
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  cursor: pointer;
+}
+
+.btn:hover {
+  background-color: var(--secondary);
+}
+
+.summary-grid {
+  display: flex;
+  gap: 2rem;
+  margin-bottom: 3rem;
+  flex-wrap: wrap;
+}
+
+.summary-item {
+  border-left: 3px solid var(--primary);
+  padding-left: 1rem;
+}
+
+.summary-label {
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: #666;
+}
+
+.summary-value {
+  font-size: 1.2rem;
+  font-weight: 800;
+}
+
+.summary-value-large {
+  font-size: 1.2rem;
+}
+
+.hierarchy-list {
+  display: flex;
+  flex-direction: column;
+  gap: 4rem;
+}
+
+.hierarchy-card {
+  border: 1px solid var(--border);
+}
+
+.hierarchy-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
+.tag {
+  padding: 0.2rem 0.5rem;
+  font-size: 0.6rem;
+  font-weight: 700;
+  border: 1px solid currentColor;
+}
+
+.tag-cycle {
+  color: var(--error);
+}
+
+.tag-tree {
+  color: var(--primary);
+}
+
+.tree-visual-container {
+  padding: 2rem;
+  display: flex;
+  justify-content: center;
+  overflow-x: auto;
+}
+
+.tree-visualizer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.tree-node {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+}
+
+.node-content {
+  width: 40px;
+  height: 40px;
+  border: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: white;
+  font-weight: 800;
+  z-index: 2;
+  position: relative;
+}
+
+.node-children {
+  display: flex;
+  gap: 2rem;
+  margin-top: 2rem;
+  position: relative;
+}
+
+.node-children::before {
+  content: '';
+  position: absolute;
+  top: -2rem;
+  left: 50%;
+  width: 1px;
+  height: 1rem;
+  background-color: var(--border);
+}
+
+.tree-node:not(:only-child).tree-node::after {
+  content: '';
+  position: absolute;
+  top: -1rem;
+  width: 100%;
+  height: 1px;
+  background-color: var(--border);
+}
+
+.tree-node:first-child:not(:only-child)::after {
+  left: 50%;
+  width: 50%;
+}
+
+.tree-node:last-child:not(:only-child)::after {
+  right: 50%;
+  width: 50%;
+}
+
+.tree-node:not(:first-child):not(:last-child)::after {
+  left: 0;
+  width: 100%;
+}
+
+.node-content::after {
+  content: '';
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  width: 1px;
+  height: 1rem;
+  background-color: var(--border);
+  display: none;
+}
+
+.tree-node:has(.node-children)>.node-content::after {
+  display: block;
+}
+
+.info-section {
+  margin-top: 4rem;
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  opacity: 0.5;
+}
